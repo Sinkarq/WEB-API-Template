@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-HOSPITALity.Server-61BE612E-E2BF-4C26-BC60-FB28F6174CE8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\YourProject.Data\YourProject.Data.csproj" />
+    <ProjectReference Include="..\..\Services\YourProject.Services.Data\YourProject.Services.Data.csproj" />
+    <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" />
+    <ProjectReference Include="..\YourProject.Infrastructure\YourProject.Infrastructure.csproj" />
+    <ProjectReference Include="..\YourProject.ViewModels\YourProject.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.2" />
+  </ItemGroup>
+
+</Project>

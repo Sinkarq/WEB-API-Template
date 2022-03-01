@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Data\YourProject.Data\YourProject.Data.csproj" />
+      <ProjectReference Include="..\..\Services\YourProject.Services.Data\YourProject.Services.Data.csproj" />
+      <ProjectReference Include="..\..\Services\YourProject.Services.Mapping\YourProject.Services.Mapping.csproj" />
+      <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" />
+      <ProjectReference Include="..\YourProject.ViewModels\YourProject.ViewModels.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.2" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+</Project>
