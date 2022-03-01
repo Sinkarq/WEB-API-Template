@@ -74,7 +74,7 @@ public static class ServiceCollectionExtensions
         {
             c.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "My HospitaLity API", 
+                Title = "YourProject API", 
                 Version = "v1"
             });
         });
