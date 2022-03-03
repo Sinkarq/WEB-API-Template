@@ -55,7 +55,7 @@ This solution folder contains three subfolders:
 
 #### WEB-API-Template.Data
 
-[WEB-API-Template.Data](https://github.com/Sinkarq/WEB-API-Template/tree/master/Data/YourProject.Data) contains DbContext, Migrations and Configuraitons for the EF Core.There is Seeding and Repository functionality as well.
+[WEB-API-Template.Data](https://github.com/Sinkarq/WEB-API-Template/tree/master/Data/YourProject.Data) contains DbContext, Migrations and Configuraitons for the EF Core. There is Seeding and Repository functionality as well.
 
 ### Services
 
