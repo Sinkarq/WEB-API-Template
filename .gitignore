@@ -362,4 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+<<<<<<< HEAD
 .idea
+=======
+.idea
+>>>>>>> aba2ba81b3104d9f8db9403b0dd5c9a126effb72
