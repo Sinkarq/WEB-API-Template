@@ -27,7 +27,6 @@ dotnet new aspnet-core-web-api -n YourProjectName
 
 ## Project Overview
 
-![Dependencies Graph](https://user-images.githubusercontent.com/25417032/97107966-0e5fc500-16d3-11eb-9b9c-c73012ff97ac.png)
 ![image](https://raw.githubusercontent.com/Sinkarq/Ideas/main/Screenshot_2.png?token=GHSAT0AAAAAABRAVTP47FKHVHIZHOBYNRZMYRKMBWQ)
 
 ### Common
