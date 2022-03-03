@@ -1,18 +1,18 @@
 ﻿using System.Text;
-using YourProject.Data;
-using YourProject.Data.Common.Repositories;
-using YourProject.Data.Models;
-using YourProject.Data.Repositories;
-using YourProject.Services.Data;
-using YourProject.Services.Data.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using YourProject.Common;
+using YourProject.Data;
+using YourProject.Data.Common.Repositories;
+using YourProject.Data.Models;
+using YourProject.Data.Repositories;
+using YourProject.Services.Data;
+using YourProject.Services.Data.Interfaces;
 
-namespace YourProject.Infrastructure;
+namespace YourProject.Infrastructure.Extensions;
 
 public static class ServiceCollectionExtensions
 {

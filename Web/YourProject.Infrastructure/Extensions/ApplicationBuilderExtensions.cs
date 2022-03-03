@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
-using YourProject.Data;
-using YourProject.Services.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using YourProject.Data;
+using YourProject.Services.Mapping;
 using YourProject.ViewModels;
 
-namespace YourProject.Infrastructure;
+namespace YourProject.Infrastructure.Extensions;
 
 public static class ApplicationBuilderExtensions
 {   

@@ -7,11 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Data\YourProject.Data\YourProject.Data.csproj" />
-      <ProjectReference Include="..\..\Services\YourProject.Services.Data\YourProject.Services.Data.csproj" />
-      <ProjectReference Include="..\..\Services\YourProject.Services.Mapping\YourProject.Services.Mapping.csproj" />
-      <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" />
-      <ProjectReference Include="..\YourProject.ViewModels\YourProject.ViewModels.csproj" />
+      <ProjectReference Include="..\..\Data\YourProject.Data.Common\YourProject.Data.Common.csproj" />
+      <ProjectReference Include="..\..\Data\YourProject.Data.Models\YourProject.Data.Models.csproj" />
+      <ProjectReference Include="..\..\Data\YourProject.Data\YourProject.Data.csproj" PrivateAssets="All" />
+      <ProjectReference Include="..\..\Services\YourProject.Services.Data\YourProject.Services.Data.csproj" PrivateAssets="All" />
+      <ProjectReference Include="..\..\Services\YourProject.Services.Mapping\YourProject.Services.Mapping.csproj" PrivateAssets="All" />
+      <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" PrivateAssets="All" />
+      <ProjectReference Include="..\YourProject.ViewModels\YourProject.ViewModels.csproj" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

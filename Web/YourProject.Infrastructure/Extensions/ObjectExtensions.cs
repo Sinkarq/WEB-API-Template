@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace YourProject.Infrastructure.Filters;
+namespace YourProject.Infrastructure.Extensions;
 
 public static class ObjectExtensions
 {

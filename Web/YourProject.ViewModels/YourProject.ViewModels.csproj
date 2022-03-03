@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Data\YourProject.Data.Models\YourProject.Data.Models.csproj" />
-      <ProjectReference Include="..\..\Services\YourProject.Services.Mapping\YourProject.Services.Mapping.csproj" />
+      <ProjectReference Include="..\..\Data\YourProject.Data.Models\YourProject.Data.Models.csproj" PrivateAssets="All"/>
+      <ProjectReference Include="..\..\Services\YourProject.Services.Mapping\YourProject.Services.Mapping.csproj" PrivateAssets="All"/>
     </ItemGroup>
 
 </Project>

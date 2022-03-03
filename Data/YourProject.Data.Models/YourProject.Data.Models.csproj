@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YourProject.Data.Common\YourProject.Data.Common.csproj" />
+    <ProjectReference Include="..\YourProject.Data.Common\YourProject.Data.Common.csproj" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>

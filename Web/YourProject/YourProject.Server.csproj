@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-HOSPITALity.Server-61BE612E-E2BF-4C26-BC60-FB28F6174CE8</UserSecretsId>
+    <UserSecretsId>aspnet-YourProject-61BE612E-E2BF-4C26-BC60-FB28F6174CE8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,15 +12,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\YourProject.Data\YourProject.Data.csproj" />
-    <ProjectReference Include="..\..\Services\YourProject.Services.Data\YourProject.Services.Data.csproj" />
-    <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" />
-    <ProjectReference Include="..\YourProject.Infrastructure\YourProject.Infrastructure.csproj" />
-    <ProjectReference Include="..\YourProject.ViewModels\YourProject.ViewModels.csproj" />
+    <ProjectReference Include="..\..\Data\YourProject.Data.Common\YourProject.Data.Common.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\Data\YourProject.Data.Models\YourProject.Data.Models.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\Data\YourProject.Data\YourProject.Data.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\Services\YourProject.Services.Data\YourProject.Services.Data.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\Services\YourProject.Services.Mapping\YourProject.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\YourProject.Services\YourProject.Services.csproj" />
+    <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\YourProject.Infrastructure\YourProject.Infrastructure.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\YourProject.ViewModels\YourProject.ViewModels.csproj" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.2" />
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
+	<!-- Other content bellow here -->
 
 </Project>

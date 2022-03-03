@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace YourProject.Infrastructure;
+namespace YourProject.Infrastructure.Extensions;
 
 public static class IdentityExtensions
 {

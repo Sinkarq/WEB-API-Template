@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YourProject.Data.Common\YourProject.Data.Common.csproj" />
-    <ProjectReference Include="..\YourProject.Data.Models\YourProject.Data.Models.csproj" />
+    <ProjectReference Include="..\YourProject.Data.Common\YourProject.Data.Common.csproj" PrivateAssets="All"/>
+    <ProjectReference Include="..\YourProject.Data.Models\YourProject.Data.Models.csproj" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>

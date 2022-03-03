@@ -1,6 +1,8 @@
 using YourProject.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using YourProject.Data;
+using YourProject.Infrastructure.Extensions;
+using YourProject.Infrastructure.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,10 @@ builder.Services
     .AddJwtAuthentication(builder.Services.GetApplicationSettings(builder.Configuration))
     .AddApplicationServices()
     .AddSwagger()
-    .AddControllers();
+    .AddControllers(/*options => 
+        options.Filters.Add<ModelOrNotFoundActionFilter>()
+        All this does it check if the result that you are returning is null and 
+        if it's null it returns NotFoundResult() for you*/);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

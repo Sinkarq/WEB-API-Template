@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using YourProject.Common;
 
-namespace YourProject.Infrastructure;
+namespace YourProject.Infrastructure.Extensions;
 
 public static class ConfigurationSettings
 {
