@@ -31,8 +31,9 @@ if (app.Environment.IsDevelopment())
 
 app
     .UseSwaggerUI()
-    .UseRouting()
+    .SeedDatabase()
     .UseAutoMapper()
+    .UseRouting()
     .UseCors(options => options
         .AllowAnyOrigin()
         .AllowAnyHeader()

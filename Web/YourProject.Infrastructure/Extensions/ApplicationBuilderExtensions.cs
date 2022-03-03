@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using YourProject.Data;
+using YourProject.Data.Seeding;
 using YourProject.Services.Mapping;
 using YourProject.ViewModels;
 
@@ -19,6 +20,16 @@ public static class ApplicationBuilderExtensions
                 options.RoutePrefix = string.Empty;
             });
     }
+    
+    public static IApplicationBuilder SeedDatabase(this IApplicationBuilder app)
+    {
+        using var serviceScope = app.ApplicationServices.CreateScope();
+        var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        dbContext.Database.Migrate();
+        new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+
+        return app;
+    }
 
     public static IApplicationBuilder UseAutoMapper(this IApplicationBuilder app)
     {
@@ -26,7 +37,7 @@ public static class ApplicationBuilderExtensions
             
         return app;
     }
-        
+    // TODO: This
     public static void ApplyMigrations(this IApplicationBuilder app)
     {
         using var services = app.ApplicationServices.CreateScope();
