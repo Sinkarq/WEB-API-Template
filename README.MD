@@ -5,7 +5,6 @@ A ready-to-use template for ASP.NET Core WEB API with repositories, services, mo
 ## Authors
 
 - [Sinan Abdulgafurov](https://github.com/Sinkarq)
-- [Nikolay Kostov](https://github.com/NikolayIT)
 
 ## Code snippets from
  
