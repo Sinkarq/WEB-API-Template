@@ -1,6 +1,7 @@
 # ASP.NET Core WEB API Template
 
 A ready-to-use template for ASP.NET Core WEB API with repositories, services, models mapping, DI.
+**Check Home Controller before using**
 
 ## Authors
 
