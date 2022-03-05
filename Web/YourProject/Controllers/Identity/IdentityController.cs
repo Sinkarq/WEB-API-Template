@@ -1,11 +1,11 @@
-﻿using YourProject.ViewModels.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using YourProject.Common;
 using YourProject.Data.Models;
 using YourProject.Server.Controllers.Base;
 using YourProject.Services.Data.Interfaces;
+using YourProject.ViewModels.Identity;
 
 namespace YourProject.Server.Controllers.Identity;
 
@@ -14,7 +14,6 @@ public class IdentityController : ApiController
     private readonly UserManager<User> userManager;
     private readonly AppSettings appSettings;
     private readonly IIdentityService identityService;
-    
     public IdentityController(
         UserManager<User> userManager, 
         IOptions<AppSettings> appSettings, 
@@ -24,7 +23,7 @@ public class IdentityController : ApiController
         this.identityService = identityService;
         this.appSettings = appSettings.Value;
     }
-    
+
     [HttpPost]
     [Route(nameof(Register))]
     public async Task<IActionResult> Register(RegisterUserRequestModel model)

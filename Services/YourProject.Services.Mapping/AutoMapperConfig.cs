@@ -5,18 +5,18 @@ namespace YourProject.Services.Mapping;
 
 public static class AutoMapperConfig
 {
-    private static bool initialized;
+    private static bool _initialized;
 
-    public static IMapper MapperInstance { get; set; }
+    public static IMapper? MapperInstance { get; private set; }
 
     public static void RegisterMappings(params Assembly[] assemblies)
     {
-        if (initialized)
+        if (_initialized)
         {
             return;
         }
 
-        initialized = true;
+        _initialized = true;
 
         var types = assemblies.SelectMany(a => a.GetExportedTypes()).ToList();
 
@@ -94,8 +94,9 @@ public static class AutoMapperConfig
 
     private class TypesMap
     {
-        public Type Source { get; set; }
 
-        public Type Destination { get; set; }
+        public Type Source { get; init; }
+
+        public Type Destination { get; init; }
     }
 }

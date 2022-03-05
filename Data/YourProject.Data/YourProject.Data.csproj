@@ -18,9 +18,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+	
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" />
     <ProjectReference Include="..\YourProject.Data.Common\YourProject.Data.Common.csproj" PrivateAssets="All" />
     <ProjectReference Include="..\YourProject.Data.Models\YourProject.Data.Models.csproj" PrivateAssets="All" />
   </ItemGroup>
