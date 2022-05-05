@@ -15,23 +15,20 @@
     <ProjectReference Include="..\..\Data\YourProject.Data.Common\YourProject.Data.Common.csproj" PrivateAssets="All" />
     <ProjectReference Include="..\..\Data\YourProject.Data.Models\YourProject.Data.Models.csproj" PrivateAssets="All" />
     <ProjectReference Include="..\..\Data\YourProject.Data\YourProject.Data.csproj" PrivateAssets="All" />
-    <ProjectReference Include="..\..\Services\YourProject.Services.Data\YourProject.Services.Data.csproj" PrivateAssets="All" />
-    <ProjectReference Include="..\..\Services\YourProject.Services.Mapping\YourProject.Services.Mapping.csproj" />
-    <ProjectReference Include="..\..\Services\YourProject.Services\YourProject.Services.csproj" />
     <ProjectReference Include="..\..\YourProject.Common\YourProject.Common.csproj" PrivateAssets="All" />
   </ItemGroup>
 
 	<ItemGroup>
         
-       <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.2" />
+       <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.4" />
 		
-       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
+       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
        </PackageReference>
         
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.2" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
 		
        <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
