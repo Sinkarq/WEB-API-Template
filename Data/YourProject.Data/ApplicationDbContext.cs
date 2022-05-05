@@ -1,9 +1,5 @@
 ﻿using System.Reflection;
-using YourProject.Data;
-using YourProject.Data.Common.Models;
-using YourProject.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace YourProject.Data;

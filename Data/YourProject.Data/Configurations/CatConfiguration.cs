@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using YourProject.Data.Models;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace YourProject.Data.Configurations;
 public class CatConfiguration : IEntityTypeConfiguration<Cat>

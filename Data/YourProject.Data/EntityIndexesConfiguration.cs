@@ -1,7 +1,4 @@
-﻿using YourProject.Data.Common.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace YourProject.Data;
+﻿namespace YourProject.Data;
 
 internal static class EntityIndexesConfiguration
 {

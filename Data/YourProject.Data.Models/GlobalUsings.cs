@@ -1,0 +1,1 @@
+﻿global using YourProject.Data.Common.Models;

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using YourProject.Data.Common.Repositories;
+﻿using YourProject.Data.Common.Repositories;
 
 namespace YourProject.Data.Repositories;
 
