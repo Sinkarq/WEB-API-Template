@@ -1,8 +1,6 @@
-﻿using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using YourProject.Data;
 using YourProject.Data.Seeding;
-using YourProject.Server.Features.Cats.Models;
 
 namespace YourProject.Server.Infrastructure.Extensions;
 
@@ -25,13 +23,6 @@ public static class ApplicationBuilderExtensions
         dbContext.Database.Migrate();
         new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
 
-        return app;
-    }
-
-    public static IApplicationBuilder UseAutoMapper(this IApplicationBuilder app)
-    {
-        AutoMapperConfig.RegisterMappings(typeof(Animal).GetTypeInfo().Assembly);
-        
         return app;
     }
 }

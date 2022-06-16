@@ -58,21 +58,64 @@ public static class ServiceCollectionExtensions
     }
 
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-    {
-        services.AddTransient<IIdentityService, IdentityService>();
-        services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-        services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-        
-        return services;
-    }
+        => services
+            .AddTransient<IIdentityService, IdentityService>()
+            .AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>))
+            .AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
+            .AddSingleton(AutoMapperConfig.MapperInstance);
 
     public static IServiceCollection AddSwagger(this IServiceCollection services)
         => services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "YourProject API", 
+                Title = "YourProject API",
                 Version = "v1"
             });
         });
+    
+    public static IServiceCollection AddServicesImplementingBaseServiceInterfaces(this IServiceCollection services)
+    {
+        var iServiceType = typeof(IService);
+        var iScopedServiceType = typeof(IScopedService);
+        var iSingletonServiceType = typeof(ISingletonService);
+        var iConcreteServiceType = typeof(IConcreteService);
+
+        var result = iServiceType
+            .Assembly
+            .GetExportedTypes()
+            .Where(x =>
+                x.IsClass && !x.IsAbstract &&
+                (x.IsAssignableTo(iServiceType) ||
+                 x.IsAssignableTo(iScopedServiceType) ||
+                 x.IsAssignableTo(iSingletonServiceType) ||
+                 x.IsAssignableTo(iConcreteServiceType)))
+            .Select(x => new
+            {
+                Service = x.GetInterface($"I{x.Name}"),
+                Implementation = x,
+            });
+
+        result.ForEach(x =>
+        {
+            if (x.Service == typeof(IScopedService))
+            {
+                services.AddScoped(x.Service, x.Implementation);
+            }
+            else if (x.Service == typeof(ISingletonService))
+            {
+                services.AddSingleton(x.Service, x.Implementation);
+            }
+            else if (x.Service == null)
+            {
+                services.AddScoped(x.Implementation);
+            }
+            else
+            {
+                services.AddTransient(x.Service, x.Implementation);
+            }
+        });
+
+        return services;
+    }
 }
