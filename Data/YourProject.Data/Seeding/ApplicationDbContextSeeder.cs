@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace YourProject.Data.Seeding;
 
-internal sealed class ApplicationDbContextSeeder : ISeeder
+public sealed class ApplicationDbContextSeeder : ISeeder
 {
     public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
     {
