@@ -4,7 +4,7 @@ using YourProject.Common;
 
 namespace YourProject.Data.Seeding;
 
-internal class RolesSeeder : ISeeder
+internal sealed class RolesSeeder : ISeeder
 {
     public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
     {

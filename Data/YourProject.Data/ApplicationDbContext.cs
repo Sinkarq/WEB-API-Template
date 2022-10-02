@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace YourProject.Data;
 
-public class ApplicationDbContext : IdentityDbContext<User>
+public sealed class ApplicationDbContext : IdentityDbContext<User>
 {
     private static readonly MethodInfo? SetIsDeletedQueryFilterMethod =
         typeof(ApplicationDbContext).GetMethod(

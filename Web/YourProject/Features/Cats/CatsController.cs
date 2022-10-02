@@ -6,7 +6,7 @@ using YourProject.Server.Infrastructure.Extensions;
 
 namespace YourProject.Server.Features.Cats;
 
-public class HomeController : ApiController
+internal sealed class HomeController : ApiController
 {
     private readonly IDeletableEntityRepository<Cat> catsRepository;
     private readonly ICatService catService;

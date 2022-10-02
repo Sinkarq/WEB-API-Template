@@ -7,7 +7,7 @@ namespace YourProject.Server.Infrastructure.Filters;
 /// <summary>
 /// Converts the result in NotFoundResult if the returning value is null
 /// </summary>
-public class ModelOrNotFoundActionFilter : ActionFilterAttribute
+public sealed class ModelOrNotFoundActionFilter : ActionFilterAttribute
 {
     public override void OnActionExecuted(ActionExecutedContext context)
     {

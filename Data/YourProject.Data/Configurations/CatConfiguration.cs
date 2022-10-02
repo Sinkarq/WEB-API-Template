@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace YourProject.Data.Configurations;
-public class CatConfiguration : IEntityTypeConfiguration<Cat>
+internal sealed class CatConfiguration : IEntityTypeConfiguration<Cat>
 {
     public void Configure(EntityTypeBuilder<Cat> cat)
     {

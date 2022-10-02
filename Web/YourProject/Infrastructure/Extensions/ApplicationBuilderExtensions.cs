@@ -4,7 +4,7 @@ using YourProject.Data.Seeding;
 
 namespace YourProject.Server.Infrastructure.Extensions;
 
-public static class ApplicationBuilderExtensions
+internal static class ApplicationBuilderExtensions
 {   
     public static IApplicationBuilder UseSwaggerUI(this IApplicationBuilder app)
     {

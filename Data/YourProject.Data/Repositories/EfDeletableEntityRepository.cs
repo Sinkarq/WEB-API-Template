@@ -2,7 +2,7 @@
 
 namespace YourProject.Data.Repositories;
 
-public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
+public sealed class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
     where TEntity : class, IDeletableEntity
 {
     public EfDeletableEntityRepository(ApplicationDbContext context)

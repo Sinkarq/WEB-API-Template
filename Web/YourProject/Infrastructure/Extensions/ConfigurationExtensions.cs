@@ -2,7 +2,7 @@
 
 namespace YourProject.Server.Infrastructure.Extensions;
 
-public static class ConfigurationSettings
+internal static class ConfigurationSettings
 {
     public static string GetDefaultConnection(this IConfiguration configuration)
         => configuration.GetConnectionString("DefaultConnection");

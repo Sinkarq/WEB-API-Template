@@ -11,7 +11,7 @@ using YourProject.Server.Features.Identity;
 
 namespace YourProject.Server.Infrastructure.Extensions;
 
-public static class ServiceCollectionExtensions
+internal static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddIdentity(this IServiceCollection services)
     {

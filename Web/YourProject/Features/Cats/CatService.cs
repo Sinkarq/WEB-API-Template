@@ -3,11 +3,11 @@ using YourProject.Server.Features.Cats.Models;
 
 namespace YourProject.Server.Features.Cats;
 
-public class CatService : ICatService
+internal sealed class CatService : ICatService
 {
     private readonly IDeletableEntityRepository<Cat> catsRepository;
 
-    public CatService(IDeletableEntityRepository<Cat> catRepository) => this.catsRepository = catsRepository;
+    public CatService(IDeletableEntityRepository<Cat> catRepository) => this.catsRepository = catRepository;
 
     public Animal GetById(int id) =>
         catsRepository
