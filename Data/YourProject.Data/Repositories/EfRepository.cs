@@ -35,6 +35,7 @@ public class EfRepository<TEntity> : IRepository<TEntity>
     public virtual void Delete(TEntity entity) => this.DbSet.Remove(entity);
 
     public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();
+    public DbSet<TEntity> Collection() => this.DbSet;
 
     public void Dispose()
     {

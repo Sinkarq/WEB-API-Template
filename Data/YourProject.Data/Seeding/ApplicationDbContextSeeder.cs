@@ -22,6 +22,7 @@ public sealed class ApplicationDbContextSeeder : ISeeder
         var seeders = new List<ISeeder>
         {
             new RolesSeeder(),
+            new CatsSeeder()
         };
 
         foreach (var seeder in seeders)

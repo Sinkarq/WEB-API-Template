@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using YourProject.Data.Common.Repositories;
 using YourProject.Server.Features.Cats.Models;
@@ -6,39 +7,28 @@ using YourProject.Server.Infrastructure.Extensions;
 
 namespace YourProject.Server.Features.Cats;
 
-internal sealed class HomeController : ApiController
+public class CatsController : ApiController
 {
     private readonly IDeletableEntityRepository<Cat> catsRepository;
     private readonly ICatService catService;
+    private readonly IMapper mapper;
 
-    public HomeController(IDeletableEntityRepository<Cat> catsRepository, ICatService catService)
+    public CatsController(IDeletableEntityRepository<Cat> catsRepository, ICatService catService, IMapper mapper)
     {
         this.catsRepository = catsRepository;
         this.catService = catService;
-    }
-
-    [HttpGet]
-    [Authorize]
-    [Route(nameof(GetFirstCatOfFirstUser))]
-    public ActionResult<Animal> GetFirstCatOfFirstUser()
-    {
-        var userId = this.User.GetId();
-
-        if (userId == null)
-        {
-            return new NotFoundResult();
-        }
-        
-        return catsRepository
-            .All()
-            .Where(x => x.UserId == userId)
-            .To<Animal>()
-            .FirstOrDefault()!;
+        this.mapper = mapper;
     }
 
     [HttpGet]
     [Route(nameof(GetById))]
-    public IActionResult GetById(int id) => this.Ok(this.catService.GetById(id).OrNotFound());
+    public async Task<IActionResult> GetById(int id)
+    {
+        var cat = await this.catService.GetById(id);
+        var result = this.mapper.Map<Animal>(cat);
+
+        return this.Ok(result);
+    }
 
     // OrNotFound is a global action located in the Infrastructure Project
     // And all it does is this check
@@ -54,7 +44,7 @@ internal sealed class HomeController : ApiController
     {
         var userId = this.User.GetId();
 
-        await catsRepository.AddAsync(new Cat {Name = "Sinan", UserId = userId});
+        await catsRepository.AddAsync(new Cat("Sinan", userId));
         await catsRepository.SaveChangesAsync();
 
         return this.Ok(catsRepository.All().ToList());

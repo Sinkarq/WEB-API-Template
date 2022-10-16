@@ -6,7 +6,7 @@ using YourProject.Server.Features.Identity.Models;
 
 namespace YourProject.Server.Features.Identity;
 
-public class IdentityController : ApiController
+public sealed class IdentityController : ApiController
 {
     private readonly UserManager<User> userManager;
     private readonly AppSettings appSettings;
@@ -23,29 +23,29 @@ public class IdentityController : ApiController
 
     [HttpPost]
     [Route(nameof(Register))]
-    public async Task<IActionResult> Register(RegisterUserRequestModel model)
+    public async Task<IActionResult> Register(RegisterRequestModel model)
     {
         var user = new User
         {
             Email = model.Email,
-            UserName = model.UserName
+            UserName = model.Username
         };
     
         var result = await this.userManager.CreateAsync(user, model.Password);
     
-        if (result.Succeeded)
+        if (!result.Succeeded)
         {
-            return Ok();
+            BadRequest(result.Errors);
         }
-    
-        return BadRequest(result.Errors);
+
+        return this.Ok();
     }
     
     [HttpPost]
     [Route(nameof(Login))]
     public async Task<ActionResult<LoginResponseModel>> Login(LoginRequestModel model)
     {
-        var user = await this.userManager.FindByNameAsync(model.UserName);
+        var user = await this.userManager.FindByNameAsync(model.Username);
         if (user == null)
         {
             return Unauthorized();
@@ -59,10 +59,7 @@ public class IdentityController : ApiController
         }
     
         var encryptedToken = this.identityService.GenerateJwtToken(user.Id, user.UserName, appSettings.Secret);
-    
-        return new LoginResponseModel
-        {
-            Token = encryptedToken
-        };
+
+        return new LoginResponseModel(encryptedToken);
     }
 }

@@ -2,5 +2,11 @@
 
 public class Animal
 {
-    public string Name { get; set; }
+    public Animal(string name)
+    {
+        ArgumentNullException.ThrowIfNull(name);
+        this.Name = name;
+    }
+
+    public string Name { get; private set; }
 }

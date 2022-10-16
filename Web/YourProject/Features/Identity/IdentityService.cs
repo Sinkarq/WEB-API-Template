@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace YourProject.Server.Features.Identity;
 
-public class IdentityService : IIdentityService
+public sealed class IdentityService : IIdentityService
 {
     public string GenerateJwtToken(
         string userId,

@@ -2,5 +2,11 @@
 
 public class LoginResponseModel
 {
-    public string Token { get; set; }
+    public LoginResponseModel(string token)
+    {
+        ArgumentNullException.ThrowIfNull(token);
+        this.Token = token;
+    }
+
+    public string Token { get; private set; }
 }

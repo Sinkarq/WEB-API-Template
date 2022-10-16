@@ -1,4 +1,7 @@
 ﻿using System.Text;
+using AutoMapper;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -7,7 +10,11 @@ using YourProject.Common;
 using YourProject.Data;
 using YourProject.Data.Common.Repositories;
 using YourProject.Data.Repositories;
+using YourProject.Server.Features.Cats;
+using YourProject.Server.Features.Cats.Models;
 using YourProject.Server.Features.Identity;
+using YourProject.Server.Features.Identity.Models;
+using YourProject.Server.Infrastructure.Mapping;
 
 namespace YourProject.Server.Infrastructure.Extensions;
 
@@ -59,10 +66,13 @@ internal static class ServiceCollectionExtensions
 
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         => services
-            .AddServicesImplementingBaseServiceInterfaces()
             .AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>))
             .AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
-            .AddSingleton(AutoMapperConfig.MapperInstance);
+            .AddAutoMapper()
+            .AddTransient<IIdentityService, IdentityService>()
+            .AddTransient<ICatService, CatService>()
+            .AddFluentValidationAutoValidation()
+            .AddValidatorsFromAssemblyContaining<LoginRequestModelValidator>();
 
     public static IServiceCollection AddSwagger(this IServiceCollection services)
         => services.AddSwaggerGen(c =>
@@ -73,49 +83,18 @@ internal static class ServiceCollectionExtensions
                 Version = "v1"
             });
         });
-    
-    public static IServiceCollection AddServicesImplementingBaseServiceInterfaces(this IServiceCollection services)
+
+    public static IServiceCollection AddAutoMapper(this IServiceCollection services)
     {
-        var iServiceType = typeof(IService);
-        var iScopedServiceType = typeof(IScopedService);
-        var iSingletonServiceType = typeof(ISingletonService);
-        var iConcreteServiceType = typeof(IConcreteService);
+        var mappingConfiguration = MappingExtensions.CreateMappingConfiguration();
+        var mapper = mappingConfiguration.CreateMapper();
+        
+        ArgumentNullException.ThrowIfNull(mapper);
 
-        var result = iServiceType
-            .Assembly
-            .GetExportedTypes()
-            .Where(x =>
-                x.IsClass && !x.IsAbstract &&
-                (x.IsAssignableTo(iServiceType) ||
-                 x.IsAssignableTo(iScopedServiceType) ||
-                 x.IsAssignableTo(iSingletonServiceType) ||
-                 x.IsAssignableTo(iConcreteServiceType)))
-            .Select(x => new
-            {
-                Service = x.GetInterface($"I{x.Name}"),
-                Implementation = x,
-            });
-
-        result.ForEach(x =>
-        {
-            if (x.Service == typeof(IScopedService))
-            {
-                services.AddScoped(x.Service, x.Implementation);
-            }
-            else if (x.Service == typeof(ISingletonService))
-            {
-                services.AddSingleton(x.Service, x.Implementation);
-            }
-            else if (x.Service == null)
-            {
-                services.AddScoped(x.Implementation);
-            }
-            else
-            {
-                services.AddTransient(x.Service, x.Implementation);
-            }
-        });
-
+        services.AddSingleton(mapper);
+        
         return services;
     }
+
+    
 }

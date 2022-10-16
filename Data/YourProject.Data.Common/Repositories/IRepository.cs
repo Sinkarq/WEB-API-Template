@@ -1,4 +1,6 @@
-﻿namespace YourProject.Data.Common.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace YourProject.Data.Common.Repositories;
 
 public interface IRepository<TEntity> : IDisposable
     where TEntity : class
@@ -14,4 +16,6 @@ public interface IRepository<TEntity> : IDisposable
     void Delete(TEntity entity);
 
     Task<int> SaveChangesAsync();
+    
+    DbSet<TEntity> Collection();
 }

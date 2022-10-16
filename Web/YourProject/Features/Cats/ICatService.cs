@@ -1,8 +1,6 @@
-﻿using YourProject.Server.Features.Cats.Models;
+﻿namespace YourProject.Server.Features.Cats;
 
-namespace YourProject.Server.Features.Cats;
-
-public interface ICatService : IService
+public interface ICatService
 {
-    Animal GetById(int id);
+    Task<Cat> GetById(int id);
 }
