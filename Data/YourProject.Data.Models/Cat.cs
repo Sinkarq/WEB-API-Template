@@ -1,11 +1,12 @@
-﻿namespace YourProject.Data.Models;
+﻿using YourProject.Common;
+
+namespace YourProject.Data.Models;
 
 public class Cat : BaseDeletableModel<int>
 {
     public Cat(string name, string userId)
     {
-        ArgumentNullException.ThrowIfNull(name);
-        ArgumentNullException.ThrowIfNull(userId);
+        NullGuardMethods.Guard(name, userId);
         this.Name = name;
         this.UserId = userId;
     }

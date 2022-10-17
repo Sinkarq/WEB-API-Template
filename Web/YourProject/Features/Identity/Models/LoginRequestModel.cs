@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using YourProject.Common;
 
 namespace YourProject.Server.Features.Identity.Models;
 public class LoginRequestModel
 {
     public LoginRequestModel(string userName, string password)
     {
-        ArgumentNullException.ThrowIfNull(userName);
-        ArgumentNullException.ThrowIfNull(password);
+        NullGuardMethods.Guard(userName, password);
         this.Username = userName;
         this.Password = password;
     }

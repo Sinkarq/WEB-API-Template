@@ -1,10 +1,12 @@
-﻿namespace YourProject.Server.Features.Identity.Models;
+﻿using YourProject.Common;
+
+namespace YourProject.Server.Features.Identity.Models;
 
 public class LoginResponseModel
 {
     public LoginResponseModel(string token)
     {
-        ArgumentNullException.ThrowIfNull(token);
+        NullGuardMethods.Guard(token);
         this.Token = token;
     }
 

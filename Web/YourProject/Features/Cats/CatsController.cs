@@ -24,6 +24,7 @@ public class CatsController : ApiController
     [Route(nameof(GetById))]
     public async Task<IActionResult> GetById(int id)
     {
+        var nz = new Cat("", "");
         var cat = await this.catService.GetById(id);
         var result = this.mapper.Map<Animal>(cat);
 

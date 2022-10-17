@@ -1,4 +1,4 @@
-namespace YourProject.Server.Infrastructure;
+namespace YourProject.Server.Infrastructure.Exceptions;
 
 // TODO: Exception OneOf and Logging (possibly Serilog)
 
