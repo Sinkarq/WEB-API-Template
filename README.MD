@@ -26,10 +26,6 @@ dotnet new -i WEB-API-TEMPLATE
 dotnet new aspnet-core-web-api -n YourProjectName
 ```
 
-## Project Overview
-
-![image](https://raw.githubusercontent.com/Sinkarq/Ideas/main/Screenshot_2.png?token=GHSAT0AAAAAABRAVTP47FKHVHIZHOBYNRZMYRKMBWQ)
-
 ### Common
 
 **AspNetCoreTemplate.Common** contains common things for the project solution. For example:
