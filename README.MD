@@ -28,7 +28,7 @@ dotnet new aspnet-core-web-api -n YourProjectName
 
 ### Common
 
-**AspNetCoreTemplate.Common** contains common things for the project solution. For example:
+**WEB-API.Common** contains common things for the project solution. For example:
 
 - [GlobalConstants.cs](https://github.com/Sinkarq/WEB-API-Template/blob/master/YourProject.Common/GlobalConstants.cs).
 
@@ -46,14 +46,13 @@ This solution folder contains three subfolders:
 
 [WEB-API-Template.Data.Common.Repositories](https://github.com/Sinkarq/WEB-API-Template/tree/master/Data/YourProject.Data.Common/Repositories) provides two interfaces IDeletableEntityRepository and IRepository, which are part of the **repository pattern**.
 
-#### AspNetCoreTemplate.Data.Models
+#### WEB-API.Data.Models
 
 [WEB-API-Template.Data.Models](https://github.com/Sinkarq/WEB-API-Template/tree/master/Data/YourProject.Data.Models) contains models related to the database including the user class.
 
 #### WEB-API-Template.Data
 
 [WEB-API-Template.Data](https://github.com/Sinkarq/WEB-API-Template/tree/master/Data/YourProject.Data) contains DbContext, Migrations and Configuraitons for the EF Core. There is Seeding and Repository functionality as well.
-://github.com/Sinkarq/WEB-API-Template/tree/master/Services/YourProject.Services.Mapping) provides simplified functionlity for auto mapping. For example:
 
 ## License
 
