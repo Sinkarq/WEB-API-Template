@@ -8,15 +8,18 @@ public class RegisterRequestModelValidator : AbstractValidator<RegisterRequestMo
 
     public RegisterRequestModelValidator()
     {
-        RuleFor(x => x.Email).NotNull().WithMessage(ValidationMessage);
-        RuleFor(x => x.Email).EmailAddress().WithMessage("Please fill in valid {PropertyName}");
-        RuleFor(x => x.Email).NotEmpty().WithMessage(ValidationMessage);
+        RuleFor(x => x.Email)
+            .NotNull().WithMessage(ValidationMessage)
+            .EmailAddress().WithMessage("Please fill in valid {PropertyName}")
+            .NotEmpty().WithMessage(ValidationMessage);
+
+        RuleFor(x => x.Password)
+            .NotNull().WithMessage(ValidationMessage)
+            .MinimumLength(8).WithMessage("{PropertyName} must be at least 8 characters long.")
+            .NotEmpty().WithMessage(ValidationMessage);
         
-        RuleFor(x => x.Password).NotNull().WithMessage(ValidationMessage);
-        RuleFor(x => x.Password).MinimumLength(8).WithMessage("{PropertyName} must be at least 8 characters long.");
-        RuleFor(x => x.Password).NotEmpty().WithMessage(ValidationMessage);
-        
-        RuleFor(x => x.Username).NotNull().WithMessage(ValidationMessage);
-        RuleFor(x => x.Username).NotEmpty().WithMessage(ValidationMessage);
+        RuleFor(x => x.Username)
+            .NotNull().WithMessage(ValidationMessage)
+            .NotEmpty().WithMessage(ValidationMessage);
     }
 }

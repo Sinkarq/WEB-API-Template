@@ -8,10 +8,12 @@ public class LoginRequestModelValidator : AbstractValidator<LoginRequestModel>
 
     public LoginRequestModelValidator()
     {
-        RuleFor(x => x.Username).NotNull().WithMessage(ValidationMessage);
-        RuleFor(x => x.Username).NotEmpty().WithMessage(ValidationMessage);
+        RuleFor(x => x.Username)
+            .NotEmpty().WithMessage(ValidationMessage)
+            .NotNull().WithMessage(ValidationMessage);
 
-        RuleFor(x => x.Password).NotNull().WithMessage(ValidationMessage);
-        RuleFor(x => x.Password).NotEmpty().WithMessage(ValidationMessage);
+        RuleFor(x => x.Password)
+            .NotNull().WithMessage(ValidationMessage)
+            .NotEmpty().WithMessage(ValidationMessage);
     }
 }

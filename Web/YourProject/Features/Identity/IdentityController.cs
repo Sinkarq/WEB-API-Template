@@ -60,6 +60,9 @@ public sealed class IdentityController : ApiController
     
         var encryptedToken = this.identityService.GenerateJwtToken(user.Id, user.UserName, appSettings.Secret);
 
-        return new LoginResponseModel(encryptedToken);
+        return new LoginResponseModel()
+        {
+            Token = encryptedToken
+        };
     }
 }
