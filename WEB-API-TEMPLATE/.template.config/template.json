@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Sinan/Sinkarq",
+    "classifications": [ "ASP.NET Core", "Core", "WEB API", "Template", "Web", "AutoMapper", "SoftDelete", "Audit", "Repositories", "JWT" ],
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    },
+    "identity": "AspNetCore.Template",
+    "name": "ASP.NET WEB API Template",
+    "shortName": "aspnet-core-web-api",
+    "sourceName": "YourProject",
+    "description": "This is .NET 6 WEB API template integrated with JWT authentication, AutoMapper, Repositories and SoftDelete",
+    "sources": [
+      {
+        "modifiers": [
+          {
+            "exclude": [ "src/.vs/**", ".template_config/**" ]
+          }
+        ]
+      }
+    ],
+    "preferNameDirectory": true
+}
