@@ -1,12 +1,21 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace YourProject.Server.Features.Identity;
 
 public sealed class IdentityService : IIdentityService
 {
+    private readonly UserManager<User> userManager;
+
+    public IdentityService(UserManager<User> userManager) => this.userManager = userManager;
+
     public string GenerateJwtToken(
         string userId,
         string username,
@@ -27,4 +36,7 @@ public sealed class IdentityService : IIdentityService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+
+    public async Task<string> Username(string userId)
+        => await this.userManager.Users.Where(x => x.Id == userId).Select(x => x.UserName).FirstOrDefaultAsync();
 }

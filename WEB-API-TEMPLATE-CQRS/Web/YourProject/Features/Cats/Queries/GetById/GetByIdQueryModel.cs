@@ -1,7 +1,9 @@
 using AutoMapper;
 using MediatR;
+using OneOf;
+using OneOf.Types;
 using YourProject.Data.Common.Repositories;
-using YourProject.Server.Infrastructure.Mapping.Interfaces;
+using YourProject.Server.Infrastructure;
 
 namespace YourProject.Server.Features.Cats.Queries.GetById;
 

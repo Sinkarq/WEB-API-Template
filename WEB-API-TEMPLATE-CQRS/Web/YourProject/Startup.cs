@@ -27,7 +27,9 @@ public class Startup
             .AddDatabaseDeveloperPageExceptionFilter()
             .AddControllers(
                 options =>
-                    options.Filters.Add<ModelOrNotFoundActionFilter>());
+                {
+                    options.Filters.Add<ModelOrNotFoundActionFilter>();
+                });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OneOf;
 using YourProject.Server.Features.Cats.Commands.CreateCommand;
 using YourProject.Server.Features.Cats.Queries.GetById;
+using YourProject.Server.Infrastructure;
 
 namespace YourProject.Server.Features.Cats;
 
