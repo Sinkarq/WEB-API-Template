@@ -9,10 +9,10 @@ public sealed class IdentityController : ApiController
     [HttpPost]
     [Route(nameof(Register))]
     public async Task<ActionResult<RegisterCommandOutputModel>> Register(RegisterCommandRequestModel model)
-        => await this.Mediator.Send(model);
+        => (await this.Mediator.Send(model)).Result;
 
     [HttpPost]
     [Route(nameof(Login))]
     public async Task<ActionResult<LoginCommandOutputModel>> Login(LoginCommandRequestModel model)
-        => await this.Mediator.Send(model);
+        => (await this.Mediator.Send(model)).Result;
 }

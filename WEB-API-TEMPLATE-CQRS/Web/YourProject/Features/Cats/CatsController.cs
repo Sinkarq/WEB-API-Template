@@ -11,8 +11,8 @@ public class CatsController : ApiController
 {
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult<GetByIdOutputModel>> GetById([FromRoute] GetByIdQueryModel model)
-        => await this.Mediator.Send(model);
+    public async Task<ActionResult<GetByIdOutputModel>> GetById([FromRoute] GetByIdQueryModel model) 
+        => (await this.Mediator.Send(model)).Result;
 
     // OrNotFound is a global action located in the Infrastructure Project
     // And all it does is this check
@@ -25,5 +25,5 @@ public class CatsController : ApiController
     [Authorize]
     [Route(nameof(CreateCat))]
     public async Task<ActionResult<CreateCommandOutputModel>> CreateCat(CreateCommandModel model)
-        => await this.Mediator.Send(model);
+        => (await this.Mediator.Send(model)).Result;
 }

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -66,6 +67,7 @@ internal static class ServiceCollectionExtensions
             .AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
             .AddAutoMapper()
             .AddTransient<IIdentityService, IdentityService>()
+            .AddFluentValidationAutoValidation()
             .AddValidatorsFromAssemblyContaining<LoginCommandRequestModelValidator>();
 
     public static IServiceCollection AddSwagger(this IServiceCollection services)
