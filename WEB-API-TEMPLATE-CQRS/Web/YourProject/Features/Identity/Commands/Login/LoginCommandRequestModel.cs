@@ -2,19 +2,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using OneOf;
+using OneOf.Types;
 using YourProject.Common;
 using YourProject.Server.Infrastructure;
 
 namespace YourProject.Server.Features.Identity.Commands.Login;
 
-public class LoginCommandRequestModel : IRequest<FeatureResult<LoginCommandOutputModel>>
+public class LoginCommandRequestModel : IRequest<OneOf<LoginCommandOutputModel, InvalidLoginCredentials>>
 {
     public string Username { get; set; }
 
     public string Password { get; set; }
 
     public class
-        LoginCommandRequestHandler : IRequestHandler<LoginCommandRequestModel, FeatureResult<LoginCommandOutputModel>>
+        LoginCommandRequestHandler : IRequestHandler<LoginCommandRequestModel, OneOf<LoginCommandOutputModel, InvalidLoginCredentials>>
     {
         private readonly UserManager<User> userManager;
         private readonly IIdentityService identityService;
@@ -28,26 +30,28 @@ public class LoginCommandRequestModel : IRequest<FeatureResult<LoginCommandOutpu
             this.appSettings = appSettings.Value;
         }
 
-        public async Task<FeatureResult<LoginCommandOutputModel>> Handle(LoginCommandRequestModel request,
+        public async Task<OneOf<LoginCommandOutputModel, InvalidLoginCredentials>> Handle(LoginCommandRequestModel request,
             CancellationToken cancellationToken)
         {
             var user = await this.userManager.FindByNameAsync(request.Username);
             if (user == null)
             {
-                return new FeatureResult<LoginCommandOutputModel>(new UnauthorizedResult());
+                return new InvalidLoginCredentials();
             }
 
             var passwordValid = await this.userManager.CheckPasswordAsync(user, request.Password);
 
             if (!passwordValid)
             {
-                return new FeatureResult<LoginCommandOutputModel>(new UnauthorizedResult());
+                return new InvalidLoginCredentials();
             }
 
             var encryptedToken = this.identityService.GenerateJwtToken(user.Id, user.UserName, appSettings.Secret);
 
-            return new FeatureResult<LoginCommandOutputModel>(
-                new OkObjectResult(new LoginCommandOutputModel() {Token = encryptedToken}));
+            return new LoginCommandOutputModel()
+            {
+                Token = encryptedToken
+            };
         }
     }
 }

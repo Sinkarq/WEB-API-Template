@@ -1,41 +1,45 @@
-using System.Collections;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OneOf;
+using OneOf.Types;
 using YourProject.Data.Common.Repositories;
 using YourProject.Server.Infrastructure;
 
 namespace YourProject.Server.Features.Cats.Queries.GetById;
 
-public class GetByIdQueryModel : 
-    IRequest<FeatureResult<GetByIdOutputModel>>
+public class GetByIdQueryModel :
+    IRequest<OneOf<GetByIdOutputModel, NotFound>>
 {
     public int Id { get; set; }
-    
-    public class GetByIdQueryHandler : IRequestHandler<GetByIdQueryModel, FeatureResult<GetByIdOutputModel>>
+
+    public class GetByIdQueryHandler : IRequestHandler<GetByIdQueryModel, OneOf<GetByIdOutputModel, NotFound>>
     {
         private readonly IDeletableEntityRepository<Cat> catRepository;
-        private readonly IMapper mapper;
 
-        public GetByIdQueryHandler(IDeletableEntityRepository<Cat> catRepository, IMapper mapper)
-        {
-            this.catRepository = catRepository;
-            this.mapper = mapper;
-        }
+        public GetByIdQueryHandler(IDeletableEntityRepository<Cat> catRepository, IMapper mapper) => this.catRepository = catRepository;
 
-        public async Task<FeatureResult<GetByIdOutputModel>> Handle(GetByIdQueryModel request, CancellationToken cancellationToken)
+        public async Task<OneOf<GetByIdOutputModel, NotFound>> Handle(GetByIdQueryModel request,
+            CancellationToken cancellationToken)
         {
             var id = request.Id;
 
-            var entity = await this.catRepository.Collection().FindAsync(id);
+            var entity = await this.catRepository
+                .All()
+                .Where(x => x.Id == request.Id)
+                .Select(x => new GetByIdOutputModel
+                {
+                    Name = x.Name,
+                    Id = x.Id
+                }).FirstOrDefaultAsync(cancellationToken);
 
             if (entity is null)
             {
-                return new FeatureResult<GetByIdOutputModel>(new NotFoundResult());
+                return new NotFound();
             }
 
-            var outputModel = this.mapper.Map<GetByIdOutputModel>(entity);
-            return new FeatureResult<GetByIdOutputModel>(new OkObjectResult(outputModel));
+            return entity;
         }
     }
 }

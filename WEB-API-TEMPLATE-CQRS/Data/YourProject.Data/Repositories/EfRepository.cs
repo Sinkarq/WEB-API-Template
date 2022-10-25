@@ -20,6 +20,8 @@ public class EfRepository<TEntity> : IRepository<TEntity>
     public virtual IQueryable<TEntity> AllAsNoTracking() => this.DbSet.AsNoTracking();
 
     public virtual Task AddAsync(TEntity entity) => this.DbSet.AddAsync(entity).AsTask();
+    
+    public virtual Task AddAsync(TEntity entity, CancellationToken cancellationToken) => this.DbSet.AddAsync(entity, cancellationToken).AsTask();
 
     public virtual void Update(TEntity entity)
     {
@@ -35,6 +37,8 @@ public class EfRepository<TEntity> : IRepository<TEntity>
     public virtual void Delete(TEntity entity) => this.DbSet.Remove(entity);
 
     public Task<int> SaveChangesAsync() => this.Context.SaveChangesAsync();
+    
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken) => this.Context.SaveChangesAsync(cancellationToken);
     public DbSet<TEntity> Collection() => this.DbSet;
 
     public void Dispose()

@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+using OneOf;
+using OneOf.Types;
 using YourProject.Server.Infrastructure;
 using YourProject.Server.Infrastructure.Mapping.Interfaces;
 
 namespace YourProject.Server.Features.Identity.Commands.Register;
 
-public class RegisterCommandRequestModel : IRequest<FeatureResult<RegisterCommandOutputModel>>, IMapTo<User>
+public class RegisterCommandRequestModel : IRequest<OneOf<RegisterCommandOutputModel, InvalidLoginCredentials>>, IMapTo<User>
 {
     public string Username { get; set; }
 
@@ -15,13 +16,13 @@ public class RegisterCommandRequestModel : IRequest<FeatureResult<RegisterComman
     public string Email { get; set; }
 
     public class RegisterCommandRequestModelHandler : IRequestHandler<RegisterCommandRequestModel,
-        FeatureResult<RegisterCommandOutputModel>>
+        OneOf<RegisterCommandOutputModel, InvalidLoginCredentials>>
     {
         private readonly UserManager<User> userManager;
 
         public RegisterCommandRequestModelHandler(UserManager<User> userManager) => this.userManager = userManager;
 
-        public async Task<FeatureResult<RegisterCommandOutputModel>> Handle(RegisterCommandRequestModel request,
+        public async Task<OneOf<RegisterCommandOutputModel, InvalidLoginCredentials>> Handle(RegisterCommandRequestModel request,
             CancellationToken cancellationToken)
         {
             var user = new User
@@ -34,10 +35,10 @@ public class RegisterCommandRequestModel : IRequest<FeatureResult<RegisterComman
 
             if (!result.Succeeded)
             {
-                return new FeatureResult<RegisterCommandOutputModel>(new BadRequestObjectResult(result.Errors));
+                return new InvalidLoginCredentials(result.Errors);
             }
 
-            return new FeatureResult<RegisterCommandOutputModel>(new RegisterCommandOutputModel());
+            return new RegisterCommandOutputModel();
         }
     }
 }

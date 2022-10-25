@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OneOf;
 using YourProject.Server.Features.Cats.Commands.CreateCommand;
 using YourProject.Server.Features.Cats.Queries.GetById;
-using YourProject.Server.Infrastructure;
 
 namespace YourProject.Server.Features.Cats;
 
-public class CatsController : ApiController
+public sealed class CatsController : ApiController
 {
     [HttpGet]
-    [Route("{id}")]
-    public async Task<ActionResult<GetByIdOutputModel>> GetById([FromRoute] GetByIdQueryModel model) 
-        => (await this.Mediator.Send(model)).Result;
+    [Route("/[controller]/{id}")]
+    public async Task<IActionResult> GetById([FromRoute] GetByIdQueryModel model) 
+        => (await this.Mediator.Send(model))
+            .Match<IActionResult>(result => this.Ok(result), _ => this.NotFound());
 
     // OrNotFound is a global action located in the Infrastructure Project
     // And all it does is this check
@@ -23,7 +22,9 @@ public class CatsController : ApiController
 
     [HttpPost]
     [Authorize]
-    [Route(nameof(CreateCat))]
-    public async Task<ActionResult<CreateCommandOutputModel>> CreateCat(CreateCommandModel model)
-        => (await this.Mediator.Send(model)).Result;
+    public async Task<IActionResult> CreateCat(CreateCommandModel model)
+    {
+        var outputModel = await this.Mediator.Send(model);
+        return this.CreatedAtAction("GetById", new {id = outputModel.Id}, outputModel);
+    }
 }

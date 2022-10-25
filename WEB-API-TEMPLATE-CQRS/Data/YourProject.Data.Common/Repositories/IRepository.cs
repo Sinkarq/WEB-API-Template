@@ -10,12 +10,16 @@ public interface IRepository<TEntity> : IDisposable
     IQueryable<TEntity> AllAsNoTracking();
 
     Task AddAsync(TEntity entity);
+    
+    Task AddAsync(TEntity entity, CancellationToken cancellationToken);
 
     void Update(TEntity entity);
 
     void Delete(TEntity entity);
 
     Task<int> SaveChangesAsync();
+    
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     
     DbSet<TEntity> Collection();
 }
