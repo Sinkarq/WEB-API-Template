@@ -14,7 +14,7 @@
 - [Ivaylo Kenov](https://github.com/ivaylokenov)
   - https://www.youtube.com/watch?v=TwsB9dhDbEU&list=PLLGdqRi7N09Yiq6Qo8lHAasz4ZpaqQdau
 
-## Package Installation
+## Package Installation 
 
 You can install this template using [NuGet](https://www.nuget.org/packages/WEB-API-TEMPLATE/):
 
@@ -24,6 +24,18 @@ dotnet new -i WEB-API-TEMPLATE
 
 ```powershell
 dotnet new aspnet-core-web-api -n YourProjectName
+```
+
+## Package Installation CQRS Version
+
+You can install this template using [NuGet](https://www.nuget.org/packages/WEB-API-CQRS-TEMPLATE/1.0.1):
+
+```powershell
+dotnet new --install WEB-API-CQRS-TEMPLATE
+```
+
+```powershell
+dotnet new aspnet-core-web-api-cqrs -n YourProjectName
 ```
 
 ### Common
